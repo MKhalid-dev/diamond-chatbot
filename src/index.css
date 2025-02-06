@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+body {
+  direction: rtl;
+}
+
+/* Flip icons for RTL */
+svg {
+  transform: scaleX(-1);
+}
+
+
+/* Custom hover effect for feature cards */
+.group:hover svg {
+  color: white;
+}
+
+/* Gradient background */
+.bg-gradient-custom {
+  background: radial-gradient(circle at top right, rgba(241, 104, 39, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #1b1b1b 0%, #1b1b1b 75%, #2d2d2d 100%);
+}
+
+/* Chat bubble styles */
+.chat-bubble-user {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.chat-bubble-ai {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
