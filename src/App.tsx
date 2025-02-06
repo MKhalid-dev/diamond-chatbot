@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Settings, LogOut, Zap, BarChart3, Send, Clock, ChevronLeft } from "lucide-react"
+import { Search, Settings, LogOut, Zap, BarChart3, Send, Clock } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import FeatureCard from "./components/feature-card"
 import Logo from './assets/logo.svg'
