@@ -27,12 +27,11 @@ interface Message {
 export default function App() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [showFeatures, setShowFeatures] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
+  const [isHeaderExpanded, _] = useState(false);
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   const suggestionMessages = [
