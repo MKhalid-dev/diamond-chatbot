@@ -11,12 +11,9 @@ import {
   Clock,
   Menu,
   X,
-  ChevronUp,
-  ChevronDown,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import FeatureCard from "./components/feature-card";
-import { MessageBox } from "react-chat-elements";
 import Logo from "./assets/logo.svg";
 import Loader from "./components/loader";
 
