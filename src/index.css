@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import 'react-chat-elements/dist/main.css';
 body {
   direction: rtl;
 }
