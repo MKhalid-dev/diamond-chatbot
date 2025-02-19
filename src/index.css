@@ -11,6 +11,11 @@ svg {
 body {
   overflow: hidden;
   font-family: 'lina-sans', sans-serif;
+  background-image: url('/src/assets/back.svg');
+  background-size: cover;
+  background-position: center;
+  
+
 }
 
 
@@ -23,7 +28,7 @@ body {
 .bg-gradient-custom {
   /* background: radial-gradient(circle at top right, rgba(241, 104, 39, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, #1b1b1b 0%, #1b1b1b 75%, #2d2d2d 100%); */
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%), url('/src/assets/background-2.svg') lightgray 50% / cover no-repeat;
+
 }
 
 
@@ -104,7 +109,7 @@ body {
 
 @font-face {
   font-family: 'lina-sans';
-  src: url('/public/lina-sans-personal-Thin.ttf') format('truetype');
+  src: url('/lina-sans-personal-Thin.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -255,3 +260,56 @@ body {
 .header-collapsed {
   max-height: 60px;
 }
+
+
+/* Voice Interaction Screen animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.voice-screen-enter {
+  animation: fadeIn 0.3s ease-out, scaleIn 0.3s ease-out;
+}
+
+.voice-screen-exit {
+  animation: fadeIn 0.3s ease-in reverse, scaleIn 0.3s ease-in reverse;
+}
+
+/* Pulsating microphone button */
+
+.ai {
+  background-image: url('./assets/ai-screen.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mic-button-pulse {
+  animation: pulse 1.5s infinite;
+}
+

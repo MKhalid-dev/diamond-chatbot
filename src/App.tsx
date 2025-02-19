@@ -15,7 +15,9 @@ import {
 import { useState, useEffect, useRef } from "react";
 import FeatureCard from "./components/feature-card";
 import Logo from "./assets/logo.svg";
+import Avatar from "./assets/avatar.svg";
 import Loader from "./components/loader";
+import { VoiceInteractionScreen } from "./components/call-ai";
 
 interface Message {
   timestamp: number | Date;
@@ -32,6 +34,8 @@ export default function App() {
   const [showFeatures, setShowFeatures] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderExpanded, _] = useState(false);
+  const [showVoiceScreen, setShowVoiceScreen] = useState(false);
+
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   const suggestionMessages = [
@@ -70,6 +74,10 @@ export default function App() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleVoiceScreen = () => {
+    setShowVoiceScreen(!showVoiceScreen);
   };
 
   useEffect(() => {
@@ -114,7 +122,11 @@ export default function App() {
             <img
               src={Logo}
               alt="Diamond Logo"
-              className="w-[160px] mb-6 mx-auto"
+              className="w-[160px] mb-6 mx-auto curosr-pointer"
+              onClick={() => {
+                setShowFeatures(!showFeatures);
+                setMessages([]);
+              }}
             />
             <button className="bg-[#F16827] text-white text-xl px-4 py-2 rounded-lg mb-4 w-full cursor-pointer">
               + طلب خدمة جديدة
@@ -170,7 +182,7 @@ export default function App() {
               isHeaderExpanded ? " max-h-16" : "max-h-96"
             } overflow-hidden`}
           >
-            <h1 className="text-5xl font-bold mb-2 text-center mt-20">
+            <h1 className="text-[48px] font-bold mb-2 text-center mt-20">
               مرحباً بك في مساعدك الرقمي الذكي
             </h1>
             <p className="text-3xl mb-5 md:mb-12  text-center">
@@ -241,13 +253,7 @@ export default function App() {
               )}
 
               {/* Input Section */}
-              <div
-                className={`p-4 ${
-                  messages.length === 0
-                    ? "border-t-0"
-                    : "border-t border-gray-700/30"
-                }`}
-              >
+              <div className={`p-4 border border-black/10 rounded-lg`}>
                 <div className="relative mb-4">
                   <input
                     type="text"
@@ -255,19 +261,25 @@ export default function App() {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && sendMessage()}
                     placeholder="اكتب رسالتك هنا..."
-                    className="w-full border border-gray-700/30 backdrop-blur-sm rounded-lg py-3 pl-12 pr-4 text-right"
+                    className="w-[90%] border border-gray-700/30 backdrop-blur-sm rounded-lg py-3 pl-12 pr-4 text-right"
                   />
                   <button
                     onClick={() => {}}
-                    className="absolute left-14 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-lg hover:bg-orange-600 transition-colors cursor-pointer"
+                    className="absolute left-39 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-lg hover:bg-orange-600 transition-colors cursor-pointer"
                   >
                     <Mic className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => sendMessage()}
-                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-lg hover:bg-orange-600 transition-colors cursor-pointer"
+                    className="absolute left-29 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-lg hover:bg-orange-600 transition-colors cursor-pointer"
                   >
                     <Send className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => toggleVoiceScreen()}
+                    className="absolute left-5 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-lg transition-colors cursor-pointer"
+                  >
+                    <img src={Avatar} alt="Avatar" />
                   </button>
                 </div>
 
@@ -317,6 +329,9 @@ export default function App() {
             className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
             onClick={toggleSidebar}
           ></div>
+        )}
+        {showVoiceScreen && (
+          <VoiceInteractionScreen onClose={toggleVoiceScreen} />
         )}
       </div>
     </>
