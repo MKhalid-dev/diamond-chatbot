@@ -37,6 +37,7 @@ export default function App() {
   const [showVoiceScreen, setShowVoiceScreen] = useState(false);
 
   const chatBoxRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const suggestionMessages = [
     "ما هي ميزانية الوزارة لعام 2025 ؟",
@@ -78,6 +79,7 @@ export default function App() {
 
   const toggleVoiceScreen = () => {
     setShowVoiceScreen(!showVoiceScreen);
+    inputRef.current?.focus();
   };
 
   useEffect(() => {
@@ -256,6 +258,7 @@ export default function App() {
               <div className={`p-4 border border-black/10 rounded-lg`}>
                 <div className="relative mb-4">
                   <input
+                    ref={inputRef}
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
